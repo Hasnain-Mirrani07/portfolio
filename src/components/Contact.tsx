@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send, Mail, MapPin, Github, Linkedin } from 'lucide-react'
 import { FadeIn } from './AnimatedSection'
+import { WhatsAppIcon } from './WhatsAppIcon'
 import { personalInfo } from '../data/portfolio'
 
 export function Contact() {
@@ -47,7 +48,19 @@ export function Contact() {
               </a>
             </div>
             <div className="glass-card p-6">
-              <MapPin className="w-6 h-6 text-mint mb-3" />
+              <WhatsAppIcon className="w-6 h-6 text-mint mb-3" />
+              <h4 className="font-medium mb-1">WhatsApp</h4>
+              <a
+                href={personalInfo.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                {personalInfo.whatsapp}
+              </a>
+            </div>
+            <div className="glass-card p-6">
+              <MapPin className="w-6 h-6 text-coral mb-3" />
               <h4 className="font-medium mb-1">Location</h4>
               <p className="text-gray-400 text-sm">{personalInfo.location}</p>
             </div>

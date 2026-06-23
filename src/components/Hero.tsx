@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin, Mail, Sparkles } from 'lucide-react'
+import { WhatsAppIcon } from './WhatsAppIcon'
 import { personalInfo, stats } from '../data/portfolio'
 
 export function Hero() {
@@ -88,6 +89,7 @@ export function Hero() {
               { icon: Github, href: personalInfo.github, label: 'GitHub' },
               { icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
               { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
+              { icon: WhatsAppIcon, href: personalInfo.whatsappUrl, label: 'WhatsApp' },
             ].map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
@@ -95,7 +97,7 @@ export function Hero() {
                 target={href.startsWith('mailto') ? undefined : '_blank'}
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-11 h-11 glass rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all hover:scale-110"
+                className={`w-11 h-11 glass rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all hover:scale-110 ${label === 'WhatsApp' ? 'hover:text-mint' : ''}`}
               >
                 <Icon className="w-5 h-5" />
               </a>
