@@ -1,45 +1,66 @@
-# Enable GitHub Pages (required once)
+# Make your portfolio live on GitHub Pages
 
-Your build succeeds, but the site returns **404** until GitHub Pages is turned on in repo settings.
+Your build **already works**. The site files are on the `gh-pages` branch.
+You only need to **turn on GitHub Pages once** in Settings.
 
-## Step-by-step (2 minutes)
+---
+
+## Do this exactly (1 minute)
 
 ### 1. Open Pages settings
 https://github.com/Hasnain-Mirrani07/portfolio/settings/pages
 
-### 2. Set the source to GitHub Actions
-Under **Build and deployment** → **Source**, choose:
+### 2. Configure source — use "Deploy from a branch"
 
-**GitHub Actions** ← not "Deploy from a branch"
+| Setting | Value |
+|---------|-------|
+| **Source** | Deploy from a branch |
+| **Branch** | `gh-pages` |
+| **Folder** | `/ (root)` |
 
-If you don't see this option, click **Settings → General → scroll down** and make sure the repo is **Public**.
+Click **Save**.
 
-### 3. Re-run the deploy workflow
-https://github.com/Hasnain-Mirrani07/portfolio/actions
+> Do NOT select "GitHub Actions" unless you have already enabled Pages.
+> The `gh-pages` branch already has your built site — use it.
 
-- Click **Deploy to GitHub Pages**
-- Click **Re-run all jobs**
-- Wait for green checkmark (~1 min)
+### 3. Wait 1–5 minutes
 
-### 4. Open your site
-https://hasnain-mirrani07.github.io/portfolio/
+Open: **https://hasnain-mirrani07.github.io/portfolio/**
 
-It can take **1–5 minutes** after the first successful deploy.
-
----
-
-## Still not working?
-
-Check **Settings → Actions → General → Workflow permissions**:
-- Select **Read and write permissions**
-- Save
-
-Then re-run the workflow again.
+You should see a green message on the Pages settings page:
+> "Your site is live at https://hasnain-mirrani07.github.io/portfolio/"
 
 ---
 
-## Alternative: Vercel (easier, free)
+## If deploy workflow fails
 
-1. Change `base: '/'` in `vite.config.ts`
-2. Go to https://vercel.com → Import GitHub repo
-3. Deploy — live in ~1 minute with a free `.vercel.app` URL
+Go to: https://github.com/Hasnain-Mirrani07/portfolio/settings/actions
+
+Under **Workflow permissions**, select:
+- **Read and write permissions** → Save
+
+Then re-run: https://github.com/Hasnain-Mirrani07/portfolio/actions
+
+---
+
+## Why the previous error happened
+
+```
+Error: Get Pages site failed ... Not Found
+```
+
+This means **GitHub Pages was never enabled** on the repo.
+The `configure-pages` action cannot enable it automatically without a special token.
+
+The `gh-pages` branch method is simpler — you just pick that branch in Settings.
+
+---
+
+## Alternative: Vercel (no GitHub Pages setup needed)
+
+1. Go to https://vercel.com and sign in with GitHub
+2. Import the `portfolio` repo
+3. Build command: `npm run build`
+4. Output directory: `dist`
+5. Add environment variable or change `vite.config.ts` base to `'/'`
+6. Deploy — live in ~1 minute
